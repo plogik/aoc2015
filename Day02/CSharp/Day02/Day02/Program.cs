@@ -8,11 +8,17 @@ namespace Day02
     {
         static void Main(string[] args)
         {
-            var sum = 0;
-            foreach (var line in File.ReadLines(@"../../../input.txt"))
-                sum += SqFeetWrapper(ParseInputLine(line));
+            var sumWrapper = 0;
+            var sumRibbon = 0;
+            foreach (var line in File.ReadLines(@"../../../input.txt")) 
+            {
+                var parsed = ParseInputLine(line);
+				sumWrapper += SqFeetWrapper(parsed);
+                sumRibbon += RibbonLength(parsed);
+			}
 
-            Console.WriteLine(sum);
+            Console.WriteLine("Pt1:" + sumWrapper);
+            Console.WriteLine("Pt2:" + sumRibbon);
             Console.ReadLine();
         }
 
@@ -35,6 +41,13 @@ namespace Day02
                 (2 * xs.Item1 * xs.Item3) +
                 (2 * xs.Item2 * xs.Item3) +
                 (xs.Item1 * xs.Item2);
+        }
+
+        static int RibbonLength((int, int, int) xs)
+        {
+            return 2 * xs.Item1 +
+                         2 * xs.Item2 +
+                         xs.Item1 * xs.Item2 * xs.Item3;
         }
     }
 }
