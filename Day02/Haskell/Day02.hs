@@ -2,7 +2,7 @@ import Data.List
 import Data.List.Split
 
 parseInputLine :: String -> [Int]
-parseInputLine s = sort . map read $ splitOn "x" s
+parseInputLine = sort . map read . splitOn "x"
 
 sumPt1 :: [Int] -> Int
 sumPt1 (x1:x2:x3:xs) =
